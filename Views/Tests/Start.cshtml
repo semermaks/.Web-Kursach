@@ -1,0 +1,98 @@
+﻿@model TestKursach2.Models.Test
+
+@{
+    ViewBag.Title = "Start";
+}
+
+<h2>Старт</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <p id="demo"></p>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="col-md-10">
+                @Html.DisplayName(Model.Name)
+            </div>
+            <div class="col-md-10">
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <table class="table">
+            @foreach (var item in Model.Questions)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Answer1)
+                    </td>
+                    <td>
+                        @Html.CheckBox(item.Id + "_1")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Answer2)
+                    </td>
+                    <td>
+                        @Html.CheckBox(item.Id + "_2")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Answer3)
+                    </td>
+                    <td>
+                        @Html.CheckBox(item.Id + "_3")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Answer4)
+                    </td>
+                    <td>
+                        @Html.CheckBox(item.Id + "_4")
+                    </td>
+                </tr>
+            }
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" id="subm" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Назад до списку", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var countDownDate = @ViewBag.time;
+        var now = 1000;
+        var x = setInterval(function () {
+            var distance = countDownDate - now;
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("demo").innerHTML = "Час, що залишився: " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+                document.getElementById("subm").click();
+            }
+            now += 1000;
+        }, 1000);
+    </script>
+}

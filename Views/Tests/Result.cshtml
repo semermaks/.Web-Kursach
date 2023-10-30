@@ -1,0 +1,58 @@
+﻿@model TestKursach2.Models.Test
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>Результат</h2>
+
+<table class="table">
+    <th>
+        @Html.DisplayNameFor(model => model.Name)
+    </th>
+
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Name)
+        </td>
+        @foreach (var item2 in Model.Questions)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayName(item2.Text)
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Answer1)
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Answer2)
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Answer3)
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Answer4)
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Site)
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Answer1Right.ToString())
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Answer2Right.ToString())
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Answer3Right.ToString())
+                </th>
+                <th>
+                    @Html.DisplayName(item2.Answer4Right.ToString())
+                </th>
+            </tr>
+        }
+    }
+    <td>
+        @Html.Display(ViewBag.result as string)
+
+        @Html.ActionLink("Назад", "Index")
+    </td>
+</table>

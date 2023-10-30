@@ -1,0 +1,49 @@
+﻿@model IEnumerable<TestKursach2.Models.Test>
+@using TestKursach2.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Тести</h2>
+
+<p>
+    @Html.ActionLink("Створити новий", "Create")
+</p>
+<table class="table">
+    <th>
+        @Html.DisplayNameFor(model => model.Name)
+    </th>
+
+    @foreach (var item in Model)
+    {
+        if (item.OvnerId == UserInfo.User.Id)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @foreach (var item2 in item.Questions)
+                {
+                <tr>
+                    <td>
+                        &bull; @Html.DisplayName(item2.Text as string);
+                    </td>
+                </tr>
+            }
+
+                <td>
+                    <button style="background: #002e1f; color: white " onclick="location.href = '@Url.Action("Start", new { id = item.Id})'">Пройти тест</button>
+                </td>
+                <td>
+
+                    @Html.ActionLink("Змінити", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Деталі", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Видалити", "Delete", new { id = item.Id })
+                </td>
+
+                </tr>
+            }
+        }
+
+</table>

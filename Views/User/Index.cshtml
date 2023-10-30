@@ -1,0 +1,139 @@
+﻿@model IEnumerable<User>
+@using TestKursach2.Models
+
+@{
+    ViewBag.Title = "Index";
+    Dictionary<Test, int> Tests = ViewBag.Test;
+}
+
+<table class="table-condensed">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => UserInfo.User.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => UserInfo.User.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => UserInfo.User.Email)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button style="background: #002e1f; color: white; margin: 4px " onclick="location.href = '@Url.Action("Edit", new { id = UserInfo.User.Id })'">Змінити</button>
+            <button style="background: #002e1f; color: white; margin: 4px " onclick="location.href = '@Url.Action("Login", "User", new { id = UserInfo.User.Id })'">Вийти</button>
+        </td>
+
+    </tr>
+</table>
+<hr />
+<hr />
+<tr>
+    <td>
+        @Html.Label("Тести які ви вже пройшли")
+        <br />
+        @Html.Name("(Зверніть увагу! При повторнопу проходженні теста результат не змінеться)")
+    </td>
+</tr>
+<hr />
+<table class="table-bordered">
+    @foreach (var item3 in Tests)
+    {
+        <tr>
+
+            <td style="padding: 1%">
+                @Html.DisplayFor(modelItem => item3.Key.Name)
+            </td>
+
+        </tr>
+        <tr>
+            <th style="padding: 2%">
+                @Html.DisplayName("Текст питання")
+            </th>
+            <th style="padding-right: 1%">
+                @Html.DisplayName("Варіант відповіді 1")
+            </th>
+            <th>
+                @Html.DisplayName("Варіант відповіді 2")
+            </th>
+            <th>
+                @Html.DisplayName("Варіант відповіді 3")
+            </th>
+            <th>
+                @Html.DisplayName("Варіант відповіді 4")
+            </th>
+            <th>
+                @Html.DisplayName("Посилання по темі")
+            </th>
+            <th>
+                @Html.DisplayName("Правельність відповіді 1")
+            </th>
+            <th>
+                @Html.DisplayName("Правельність відповіді 1")
+            </th>
+            <th>
+                @Html.DisplayName("Правельність відповіді 1")
+            </th>
+            <th>
+                @Html.DisplayName("Правельність відповіді 1")
+            </th>
+        </tr>
+        foreach (Question item2 in item3.Key.Questions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Answer1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Answer2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Answer3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Answer4)
+                </td>
+                <td>
+                    <a href="@item2.Site">@item2.Site</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Answer1Right)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Answer2Right)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Answer3Right)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item2.Answer4Right)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td>
+                @Html.Label("Результат: ")
+
+                @Html.DisplayName(item3.Value.ToString())%
+            </td>
+            <td>
+                <button style="background: #002e1f; color: white " onclick="location.href = '@Url.Action("Start", "Tests", new { id = item3.Key.Id })'">Пройти тест ще раз</button>
+            </td>
+        </tr>
+    }
+</table>

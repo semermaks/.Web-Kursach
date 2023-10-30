@@ -1,0 +1,104 @@
+﻿@model TestKursach2.Models.Question
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Видалення</h2>
+
+<h3>Ви дісно бажаєте видалити питяння?</h3>
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer4)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Site)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Site)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer1Right)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer1Right)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer2Right)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer2Right)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer3Right)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer3Right)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer4Right)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Answer4Right)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Видалити" class="btn btn-default" /> |
+            @Html.ActionLink("Назад до списку", "Index")
+        </div>
+    }
+</div>

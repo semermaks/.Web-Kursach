@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BNTeaching-tests</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #002e1f; ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            @if (ViewBag.Title != "Login")
+            {
+                @Html.ActionLink("Домашня сторінка", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Ваши питання", "Index", "Questions")</li>
+                <li>@Html.ActionLink("Ваши тести", "Index", "Tests")</li>
+            </ul>
+            <ul class="nav navbar-nav" style="float: right;">
+                <li >@Html.ActionLink("Профіль та пройдені тести", "Index", "User")</li>
+            </ul>
+        </div>
+            }
+        </div>
+            </div>
+    <div class="container body-content" style="background-image: url('1458633941-1.jpg');">
+        @RenderBody()
+        <hr />
+        <footer style="background-color: #002e1f; color: #fff" class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <d>&copy; @DateTime.Now.Year - Семернін Максим</d>
+                        <p>Корпоративна почта - semermaks@gmail.com</p>
+                    </ul>
+                </div>
+            </div>
+</footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

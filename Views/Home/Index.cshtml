@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TestKursach2.Models.Test>
+@using TestKursach2.Models
+@{
+    ViewBag.Title = "Home Page";
+
+    TestKursach2.Helpers.TestsContext db = new TestKursach2.Helpers.TestsContext();
+}
+
+<div class="jumbotron" style="background-color: lightgray">
+    <h2>Тести</h2>
+    <h3>(Тести всіх використувачів які ви можете пройти)</h3>
+</div>
+
+
+@foreach (var item in Model)
+{
+    if (!TestsResults.IsExist(item.Id))
+    {
+        <hr style="border: double; background-color: #002e1f; border-color: #002e1f " />
+        <div style="margin-block-end: 1%" class="form-horizontal">
+            @Html.Label("Номер автора: " + item.OvnerId.ToString())
+            <br />
+            @Html.Label("( " + db.Users.Find(item.OvnerId).FirstName)
+            @Html.Label(db.Users.Find(item.OvnerId).LastName + " )")
+            <hr style="margin-bottom: 0; margin-top: 4px; border: revert; border-radius: 1px" />
+            @Html.DisplayFor(modelItem => item.Name)
+            <hr style="margin-bottom: 0; margin-top: 4px; border: revert; border-radius: 1px" />
+            <div style="padding-left: 3%">
+                @foreach (var item2 in item.Questions.Take(2))
+                {
+                    @Html.Name("* ")
+                    @Html.DisplayName(item2.Text as string);
+                    <br />
+
+                }
+                @if (item.Questions.Count > 2)
+                {
+                    <p>. . .</p>
+                }
+                    
+            </div>
+            <hr style="margin-bottom: 0; margin-top: 4px; border: revert; border-radius: 1px" />
+            <button style="background: #002e1f; color: white " onclick="location.href = '@Url.Action("Start", "Tests", new { id = item.Id })'">Пройти тест</button>
+        </div>
+    }
+}
+<hr style="border: double; background-color: #002e1f; border-color: #002e1f " />
